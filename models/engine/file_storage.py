@@ -41,6 +41,12 @@ class FileStorage:
             return self.__objects.get(key)
         return None
 
+    def count(self, cls=None):
+        """Count number of objects in storage"""
+        if cls:
+            return sum(1 for obj in self.__objects.values() if isinstance(obj, cls))
+        return len(self.__objects)
+
     def new(self, obj):
         """sets in __objects the obj with key <obj class name>.id"""
         if obj is not None:
